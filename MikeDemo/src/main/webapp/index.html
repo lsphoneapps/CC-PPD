@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Mike Demo</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <!-- integrated Babel to keep build simple, it's no performance issue for something this small -->
+        <script type="text/javascript" src="babel.min.js"></script>
+        <script type="text/javascript" src="react.production.min.js"></script>
+        <script type="text/javascript" src="react-dom.production.min.js"></script>
+        
+        <style>
+            body {
+                background-color: beige;
+                color: black;
+            }
+            
+            .Busy {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                cursor: wait !important;
+                background-color: black;
+                opacity: 0.1;
+            }
+            
+            .LeftPane {
+                max-width: 70%;
+                vertical-align: middle;
+            }
+
+            .RightPane {
+                vertical-align: top;
+            }
+
+            h3 {
+                margin-bottom: .5em;
+                width: 100%;
+            }
+            
+            .HSpace {
+                display: inline-block;
+                width: 1em;
+            }
+            
+            .WithinRange {
+                font-size: smaller;
+                padding-left: .7em;
+                padding-right: .7em;
+            }
+            
+            .MinMax {
+                display: inline-block;
+            }
+            .MinMax > input {
+                width: 5em;
+            }
+            
+            .ZCSActionButtons {
+                margin: .5em;
+            }
+            .ZCSActionButtons > button {
+                margin: .75em;
+            }
+            
+            .ZipListTitle {
+                font-weight: bold;
+                margin-bottom: .1rem;
+            }
+            
+            .ZipListNote {
+                text-align: center;
+            }
+            
+            .ZipCodeList {
+                display: inline-block;
+                margin: 1em;
+                margin-top: 0;
+                border: 2px inset beige;
+                background-color: #f9ffee;
+                padding: .5em;
+                overflow-y: scroll;
+                min-height: 10em;
+                max-height: 13em;
+                width: 10em;
+            }
+            
+            .ZipCodeListItem {
+                cursor: default;
+            }
+            .ZipCodeListItem:hover {
+                cursor: pointer;
+                background-color: white;
+                color: blue;
+            }
+            .ZipCodeListItem:active {
+                background-color: blue;
+                color: white;
+            }
+            
+            .ZipCodeStats > tbody > tr > td:first-child {
+                text-align: right;
+                padding-right: .5em;
+            }
+            .ZipCodeStats input {
+                width: 10em;
+            }
+            
+            .ZipCodeQueries {
+                padding-bottom: .5em;
+            }
+            .ZipCodeQueries > div {
+                border-bottom: 1px dotted grey;
+                padding: .5em;
+            }
+            
+            .VerticalSeparator {
+                padding: .5em;
+            }
+            .VerticalSeparator > div {
+                height: 25em;
+                width: 1px;
+                border-left: 1px dotted grey;
+            }
+            
+        </style>
+    </head>
+
+    <body>
+
+        <div id="reactRoot"></div>
+
+        <!-- done this way rather than import/export, to keep it a simple Maven build.
+            in a larger project there would be webpack, requires, imports & exports -->
+        <script type="text/jsx" src="HSpace.jsx"></script>
+        <script type="text/jsx" src="ZipCodeListItem.jsx"></script>
+        <script type="text/jsx" src="ZipCodeList.jsx"></script>
+        <script type="text/jsx" src="App.jsx"></script>
+
+        <script type="text/jsx">
+            try {
+                ReactDOM.render(<App />, document.getElementById("reactRoot"));
+            } catch (e) {
+                alert(e);
+            }
+            
+            var nextReactAutoKeyIdx = 1;
+            function nextReactAutoKey() { // for dynamically created components
+                return "autoKey" + nextReactAutoKeyIdx++;
+            }
+        </script>
+        
+    </body>
+
+</html>
